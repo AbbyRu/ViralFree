@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ViralFree — Grow on TikTok Without Paying</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --red: #FE2C55;
+    --red-soft: #fff0f3;
+    --red-border: #ffc0cc;
+    --blue: #185FA5;
+    --blue-soft: #E6F1FB;
+    --blue-border: #B5D4F4;
+    --green-soft: #EAF3DE;
+    --green-text: #27500A;
+    --green-border: #C0DD97;
+    --amber-soft: #FAEEDA;
+    --amber-text: #633806;
+    --amber-border: #FAC775;
+    --teal-soft: #E1F5EE;
+    --teal-text: #085041;
+    --pink-soft: #FBEAF0;
+    --pink-text: #72243E;
+    --purple-soft: #EEEDFE;
+    --purple-text: #3C3489;
+    --gray-50: #f9f9f7;
+    --gray-100: #f1f0ec;
+    --gray-200: #e2e0da;
+    --gray-400: #9c9a93;
+    --gray-600: #5f5e5a;
+    --gray-800: #2c2c2a;
+    --border: #e8e6e0;
+    --border-hover: #ccc9c0;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font-body: 'DM Sans', sans-serif;
+    --font-display: 'Syne', sans-serif;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--gray-50);
+    color: var(--gray-800);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo {
+    width: 36px; height: 36px;
+    background: var(--black);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .nav-logo svg { width: 20px; height: 20px; }
+
+  .nav-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--black);
+    letter-spacing: -0.4px;
+  }
+
+  .nav-ad {
+    font-size: 12px;
+    color: var(--gray-400);
+    background: var(--gray-100);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-ad span { color: var(--gray-400); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .nav-ad a { color: var(--blue); font-weight: 500; text-decoration: none; }
+  .nav-ad a:hover { text-decoration: underline; }
+
+  .nav-mode {
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .mode-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    border: none;
+    background: transparent;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .mode-btn.on { background: var(--black); color: var(--white); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  /* ── TABS ── */
+  .tabs-wrap {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.75rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+
+  .tab {
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    color: var(--gray-400);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .tab:hover { color: var(--gray-800); }
+  .tab.on { color: var(--red); border-bottom-color: var(--red); }
+
+  .panel { display: none; }
+  .panel.on { display: block; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── FORM ELEMENTS ── */
+  .field { margin-bottom: 1.25rem; }
+  .field:last-child { margin-bottom: 0; }
+
+  .field-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 8px;
+  }
+
+  textarea, input[type="text"] {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--gray-800);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  textarea:focus, input[type="text"]:focus { border-color: var(--border-hover); }
+  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+  /* ── CHIPS ── */
+  .chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .chip {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.12s;
+    user-select: none;
+  }
+
+  .chip:hover { border-color: var(--border-hover); color: var(--gray-800); }
+  .chip.on { background: var(--black); color: var(--white); border-color: var(--black); }
+  .chip.red.on { background: var(--red); color: var(--white); border-color: var(--red); }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.2px;
+    transition: opacity 0.15s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-primary:active { transform: scale(0.99); }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-dark {
+    width: 100%;
+    padding: 14px;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .btn-dark:hover { opacity: 0.85; }
+  .btn-dark:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-sm {
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-hover);
+    background: transparent;
+    color: var(--gray-600);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-sm:hover { background: var(--gray-100); }
+
+  /* ── SPINNER ── */
+  .spin {
+    width: 18px; height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+    flex-shrink: 0;
+  }
+
+  .spin.on { display: block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── IDEA CARDS ── */
+  .idea-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .idea-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-sm); }
+
+  .idea-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 6px;
+  }
+
+  .idea-hook {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .idea-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+
+  .itags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .itag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--gray-600);
+    background: var(--gray-100);
+  }
+
+  .itag.blue { background: var(--blue-soft); color: #0C447C; border-color: var(--blue-border); }
+  .itag.amber { background: var(--amber-soft); color: var(--amber-text); border-color: var(--amber-border); }
+  .itag.green { background: var(--green-soft); color: var(--green-text); border-color: var(--green-border); }
+
+  /* ── ROW HEADER ── */
+  .row-hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .row-hdr-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  /* ── CALENDAR ── */
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+  }
+
+  .cal-day {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    transition: border-color 0.15s;
+  }
+
+  .cal-day:hover { border-color: var(--border-hover); }
+
+  .day-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 5px;
+  }
+
+  .day-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 6px;
+    line-height: 1.35;
+  }
+
+  /* ── CAPTION ── */
+  .caption-box {
+    background: var(--gray-50);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    font-size: 14px;
+    color: var(--gray-800);
+    line-height: 1.75;
+    white-space: pre-wrap;
+    min-height: 100px;
+  }
+
+  /* ── TIPS ── */
+  .tip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 12px;
+  }
+
+  .tip-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem;
+  }
+
+  .tip-icon {
+    width: 32px; height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .tip-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .tip-text {
+    font-size: 12px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* ── AFFILIATE CARDS ── */
+  .aff-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .aff-ico {
+    width: 42px; height: 42px;
+    border-radius: var(--radius-md);
+    background: var(--gray-100);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .aff-name { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 3px; }
+  .aff-desc { font-size: 13px; color: var(--gray-600); line-height: 1.5; margin-bottom: 8px; }
+  .aff-row { display: flex; gap: 10px; align-items: center; }
+
+  .aff-comm {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green-text);
+    background: var(--green-soft);
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--green-border);
+  }
+
+  .aff-lnk {
+    font-size: 12px;
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .aff-lnk:hover { text-decoration: underline; }
+
+  /* ── SPONSOR CARDS ── */
+  .sponsor-card {
+    background: var(--white);
+    border: 2px solid var(--blue-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .sp-badge {
+    display: inline-block;
+    background: var(--blue-soft);
+    color: #0C447C;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .sp-name { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .sp-desc { font-size: 13px; color: var(--gray-600); line-height: 1.5; margin-bottom: 12px; }
+
+  .sp-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    background: var(--black);
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: var(--font-body);
+    transition: opacity 0.15s;
+  }
+
+  .sp-btn:hover { opacity: 0.8; }
+
+  /* ── SECTION NOTE ── */
+  .section-note {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    background: var(--gray-100);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--border-hover);
+    border-radius: 0;
+  }
+
+  /* ── SPONSORED BAR ── */
+  .sp-bar {
+    background: var(--gray-100);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    margin-top: 1.5rem;
+  }
+
+  .sp-bar-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .sp-bar-title { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 3px; }
+  .sp-bar-desc { font-size: 12px; color: var(--gray-600); margin-bottom: 8px; }
+
+  /* ── ERROR ── */
+  .err {
+    background: #FFF0F0;
+    border: 1px solid #FFC0C0;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #991111;
+    margin-bottom: 1rem;
+    display: none;
+  }
+
+  .err.on { display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--gray-400);
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  footer a { color: var(--blue); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; gap: 8px; }
+    .nav-ad { display: none; }
+    .container { padding: 1.25rem 1rem 3rem; }
+    .cal-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-logo">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.85a8.23 8.23 0 004.81 1.54V6.94a4.85 4.85 0 01-1.04-.25z" fill="white"/>
+      </svg>
+    </div>
+    <span class="nav-name">ViralFree</span>
+  </a>
+  <div class="nav-ad">
+    <span>Ad</span>
+    <a href="https://www.canva.com/affiliates/" target="_blank">Design TikTok thumbnails free — Canva Pro</a>
+  </div>
+  <div class="nav-mode">
+    <button class="mode-btn" onclick="setMode('general', this)">General</button>
+    <button class="mode-btn on" onclick="setMode('thrift', this)">Thrift business</button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="tabs-wrap">
+    <button class="tab on" onclick="switchTab('ideas', this)">Idea generator</button>
+    <button class="tab" onclick="switchTab('calendar', this)">30-day calendar</button>
+    <button class="tab" onclick="switchTab('caption', this)">Caption writer</button>
+    <button class="tab" onclick="switchTab('tips', this)">Growth tips</button>
+    <button class="tab" onclick="switchTab('tools', this)">Creator tools</button>
+    <button class="tab" onclick="switchTab('sponsors', this)">Partners</button>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <!-- ── IDEAS TAB ── -->
+  <div id="tab-ideas" class="panel on">
+    <div class="card">
+      <div class="field">
+        <label class="field-label">Your niche</label>
+        <div class="chip-row" id="nicheRow">
+          <button class="chip on" onclick="pick('niche', this)">Thrifting</button>
+          <button class="chip" onclick="pick('niche', this)">Fashion</button>
+          <button class="chip" onclick="pick('niche', this)">Beauty</button>
+          <button class="chip" onclick="pick('niche', this)">Fitness</button>
+          <button class="chip" onclick="pick('niche', this)">Food</button>
+          <button class="chip" onclick="pick('niche', this)">Finance</button>
+          <button class="chip" onclick="pick('niche', this)">Comedy</button>
+          <button class="chip" onclick="pick('niche', this)">Tech</button>
+          <button class="chip" onclick="pick('niche', this)">Travel</button>
+          <button class="chip" onclick="pick('niche', this)">Business</button>
+          <button class="chip" onclick="pick('niche', this)">Gaming</button>
+          <button class="chip" onclick="pick('niche', this)">Pets</button>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Goal</label>
+        <div class="chip-row" id="goalRow">
+          <button class="chip red on" onclick="pick('goal', this)">Go viral</button>
+          <button class="chip red" onclick="pick('goal', this)">Gain followers</button>
+          <button class="chip red" onclick="pick('goal', this)">Drive sales</button>
+          <button class="chip red" onclick="pick('goal', this)">Build trust</button>
+          <button class="chip red" onclick="pick('goal', this)">Entertain</button>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Extra context (optional)</label>
+        <textarea id="ctx" placeholder="e.g. I run a thrifting business in Nairobi targeting Gen Z women, I source from Gikomba market..."></textarea>
+      </div>
+      <button class="btn-primary" id="ideaBtn" onclick="genIdeas()">
+        <div class="spin" id="ideaSpin"></div>
+        <span id="ideaTxt">Generate ideas — free</span>
+      </button>
+    </div>
+    <div id="ideasOut"></div>
+  </div>
+
+  <!-- ── CALENDAR TAB ── -->
+  <div id="tab-calendar" class="panel">
+    <p class="section-note">A 30-day organic TikTok content plan built for your thrifting business. No paid boosts — just content the algorithm loves.</p>
+    <button class="btn-dark" id="calBtn" onclick="genCalendar()" style="margin-bottom: 1.5rem;">
+      <div class="spin" id="calSpin"></div>
+      <span id="calTxt">Generate my 30-day plan</span>
+    </button>
+    <div id="calOut"></div>
+  </div>
+
+  <!-- ── CAPTION TAB ── -->
+  <div id="tab-caption" class="panel">
+    <div class="card">
+      <div class="field">
+        <label class="field-label">Describe your video</label>
+        <textarea id="capCtx" placeholder="e.g. I'm showing a thrift haul I got from Gikomba for under Ksh 500 — 5 pieces including a vintage denim jacket..."></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label">Tone</label>
+        <div class="chip-row" id="toneRow">
+          <button class="chip on" onclick="pick('tone', this)">Casual &amp; fun</button>
+          <button class="chip" onclick="pick('tone', this)">Hype &amp; energetic</button>
+          <button class="chip" onclick="pick('tone', this)">Informative</button>
+          <button class="chip" onclick="pick('tone', this)">Storytelling</button>
+        </div>
+      </div>
+      <button class="btn-primary" id="capBtn" onclick="genCaption()">
+        <div class="spin" id="capSpin"></div>
+        <span id="capTxt">Write caption + hashtags</span>
+      </button>
+    </div>
+    <div id="capOut" style="display:none; margin-top: 1rem;">
+      <div class="row-hdr">
+        <span class="row-hdr-title">Your caption</span>
+        <button class="btn-sm" onclick="genCaption()">Regenerate ↻</button>
+      </div>
+      <div class="caption-box" id="capText"></div>
+    </div>
+  </div>
+
+  <!-- ── TIPS TAB ── -->
+  <div id="tab-tips" class="panel">
+    <p class="section-note">These strategies drive organic TikTok growth — no paid boosts. The algorithm rewards engagement signals, not just spend.</p>
+    <div class="tip-grid">
+      <div class="tip-card">
+        <div class="tip-icon" style="background: var(--blue-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#185FA5" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="tip-title">Hook in 0–2 seconds</div>
+        <div class="tip-text">TikTok decides to push or kill your video in the first 2 seconds. Open with a bold visual or a statement that forces curiosity.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: var(--amber-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#854F0B" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="tip-title">Before &amp; after flips</div>
+        <div class="tip-text">Transformation videos get rewatched 3–5x on average. Show the thrifted item, the flip, and final look back-to-back.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: var(--green-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#3B6D11" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="#3B6D11" stroke-width="2"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#3B6D11" stroke-width="2"/></svg>
+        </div>
+        <div class="tip-title">Take people to the market</div>
+        <div class="tip-text">Market POVs perform incredibly well — the noise, crowds, and finds make viewers feel they're discovering treasure with you.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: var(--pink-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#993556" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="tip-title">Comment-bait endings</div>
+        <div class="tip-text">End with "comment your size and I'll DM you" or "which piece should I keep?" Comments signal quality to the algorithm.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: var(--purple-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#534AB7" stroke-width="2"/><path d="M12 6v6l3 3" stroke="#534AB7" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="tip-title">Post at peak times</div>
+        <div class="tip-text">For East Africa, best windows are 7–9am, 12–2pm, and 8–10pm EAT. Consistency beats frequency — post at the same time daily.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: var(--teal-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="4" y1="22" x2="4" y2="15" stroke="#0F6E56" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="tip-title">Use niche hashtags only</div>
+        <div class="tip-text">#thriftkenya #gikombafashion #nairobishop outperform #fyp massively. Use 3–5 specific tags your target buyers actually follow.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: var(--blue-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 014-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 01-4 4H3" stroke="#185FA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="tip-title">Duet &amp; stitch creators</div>
+        <div class="tip-text">Duetting a video with 100k+ views injects your content into an existing engaged audience. Add your unique reaction or take.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: var(--amber-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18V5l12-2v13" stroke="#854F0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="#854F0B" stroke-width="2"/><circle cx="18" cy="16" r="3" stroke="#854F0B" stroke-width="2"/></svg>
+        </div>
+        <div class="tip-title">Jump on trending sounds early</div>
+        <div class="tip-text">Use trending audio within its first 24–48 hours for maximum algorithmic lift. Check TikTok's trending sound shelf daily.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon" style="background: var(--green-soft);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="#3B6D11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="tip-title">Reply to every comment</div>
+        <div class="tip-text">Comment activity is a major signal. Video replies to comments re-enter your video into the distribution cycle automatically.</div>
+      </div>
+    </div>
+    <div class="sp-bar">
+      <div class="sp-bar-label">Sponsored</div>
+      <div class="sp-bar-title">Auto-schedule your posts with Later</div>
+      <div class="sp-bar-desc">Plan a week of content in 10 minutes and post automatically at peak times — no manual posting needed.</div>
+      <a href="https://later.com/affiliates/" class="sp-btn" target="_blank">Try Later free</a>
+    </div>
+  </div>
+
+  <!-- ── TOOLS TAB ── -->
+  <div id="tab-tools" class="panel">
+    <p class="section-note">Tools trusted by top TikTok creators. These are affiliate links — we earn a small commission if you sign up, at no cost to you.</p>
+    <div class="aff-card">
+      <div class="aff-ico" style="background: var(--blue-soft);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#185FA5" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="#185FA5" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="aff-name">Canva Pro</div>
+        <div class="aff-desc">Design TikTok thumbnails, price tags, overlays, and brand kits. Used by 170M+ creators worldwide.</div>
+        <div class="aff-row">
+          <span class="aff-comm">Up to 80% commission</span>
+          <a class="aff-lnk" href="https://www.canva.com/affiliates/" target="_blank">Join affiliate program</a>
+        </div>
+      </div>
+    </div>
+    <div class="aff-card">
+      <div class="aff-ico" style="background: var(--green-soft);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#3B6D11" stroke-width="2"/><path d="M12 6v6l3 3" stroke="#3B6D11" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="aff-name">Later — Social Scheduler</div>
+        <div class="aff-desc">Auto-schedule TikTok posts, get best-time recommendations, and track analytics in one dashboard.</div>
+        <div class="aff-row">
+          <span class="aff-comm">30% recurring commission</span>
+          <a class="aff-lnk" href="https://later.com/affiliates/" target="_blank">Join affiliate program</a>
+        </div>
+      </div>
+    </div>
+    <div class="aff-card">
+      <div class="aff-ico" style="background: var(--amber-soft);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke="#854F0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="aff-name">CapCut Pro</div>
+        <div class="aff-desc">The #1 TikTok video editor. Auto-captions, trending templates, AI effects, and one-tap publishing.</div>
+        <div class="aff-row">
+          <span class="aff-comm">Partner program</span>
+          <a class="aff-lnk" href="https://www.capcut.com" target="_blank">Visit site</a>
+        </div>
+      </div>
+    </div>
+    <div class="aff-card">
+      <div class="aff-ico" style="background: var(--purple-soft);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="#534AB7" stroke-width="2"/></svg>
+      </div>
+      <div>
+        <div class="aff-name">TubeBuddy</div>
+        <div class="aff-desc">SEO keyword research, tag suggestions, and competitor analysis built for short-form creators.</div>
+        <div class="aff-row">
+          <span class="aff-comm">50% commission</span>
+          <a class="aff-lnk" href="https://www.tubebuddy.com/affiliates" target="_blank">Join affiliate program</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SPONSORS TAB ── -->
+  <div id="tab-sponsors" class="panel">
+    <p class="section-note">Featured partners who want to reach TikTok creators. These are paid sponsorship placements.</p>
+    <div class="sponsor-card">
+      <div class="sp-badge">Featured sponsor</div>
+      <div class="sp-name">Canva for Content Creators</div>
+      <div class="sp-desc">Create scroll-stopping TikTok graphics, video overlays, and brand kits — all in Canva. 30-day Pro trial free for ViralFree users.</div>
+      <a href="https://www.canva.com" class="sp-btn" target="_blank">Claim free trial</a>
+    </div>
+    <div class="sponsor-card" style="border-color: var(--green-border);">
+      <div class="sp-badge" style="background: var(--green-soft); color: var(--green-text);">Growth partner</div>
+      <div class="sp-name">Later — Post smarter, grow faster</div>
+      <div class="sp-desc">Stop guessing when to post. Later analyses your audience and auto-schedules at peak times so your videos get seen organically.</div>
+      <a href="https://later.com" class="sp-btn" target="_blank">Start free</a>
+    </div>
+    <div style="border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; margin-top: 0.5rem;">
+      <div style="font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px;">Want to sponsor ViralFree?</div>
+      <div style="font-size: 13px; color: var(--gray-600); margin-bottom: 14px;">Reach thousands of active TikTok creators every day. Get in touch to discuss placement options.</div>
+      <a href="mailto:hello@viralfree.app" class="sp-btn">Get in touch</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>ViralFree &copy; 2025 &nbsp;·&nbsp; Free forever for creators &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></p>
+  <p style="margin-top: 6px;">Some links are affiliate links. Sponsored placements are clearly labelled.</p>
+</footer>
+
+<script>
+  const CLAUDE_API = 'https://api.anthropic.com/v1/messages';
+  let niche = 'Thrifting', goal = 'Go viral', tone = 'Casual & fun';
+
+  function setMode(mode, btn) {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    if (mode === 'thrift') {
+      niche = 'Thrifting';
+      document.querySelectorAll('#nicheRow .chip').forEach(b => {
+        b.classList.remove('on');
+        if (b.textContent.trim() === 'Thrifting') b.classList.add('on');
+      });
+      document.getElementById('ctx').placeholder = 'e.g. I run a thrifting business in Nairobi targeting Gen Z women, I source from Gikomba market...';
+      document.getElementById('capCtx').placeholder = 'e.g. Thrift haul from Gikomba — 5 pieces under Ksh 500 including a vintage denim jacket...';
+    } else {
+      niche = '';
+      document.querySelectorAll('#nicheRow .chip').forEach(b => b.classList.remove('on'));
+      document.getElementById('ctx').placeholder = 'e.g. I\'m 25, based in Nairobi, targeting Gen Z...';
+      document.getElementById('capCtx').placeholder = 'e.g. I\'m showing my morning routine with a twist at the end...';
+    }
+  }
+
+  function switchTab(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+    document.getElementById('tab-' + id).classList.add('on');
+    btn.classList.add('on');
+  }
+
+  function pick(type, btn) {
+    const rowId = type === 'niche' ? 'nicheRow' : type === 'goal' ? 'goalRow' : 'toneRow';
+    document.querySelectorAll('#' + rowId + ' .chip').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    if (type === 'niche') niche = btn.textContent.trim();
+    else if (type === 'goal') goal = btn.textContent.trim();
+    else tone = btn.textContent.trim();
+  }
+
+  function showErr(msg) {
+    const e = document.getElementById('err');
+    e.textContent = msg;
+    e.classList.add('on');
+    setTimeout(() => e.classList.remove('on'), 5000);
+  }
+
+  async function callClaude(prompt, maxTokens = 1500) {
+    const res = await fetch(CLAUDE_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: maxTokens,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    return data.content?.[0]?.text || '';
+  }
+
+  function setLoading(btnId, spinId, txtId, loading, defaultText) {
+    const btn = document.getElementById(btnId);
+    const spin = document.getElementById(spinId);
+    const txt = document.getElementById(txtId);
+    btn.disabled = loading;
+    if (loading) { spin.classList.add('on'); txt.textContent = 'Loading...'; }
+    else { spin.classList.remove('on'); txt.textContent = defaultText; }
+  }
+
+  async function genIdeas() {
+    if (!niche) { showErr('Please select a niche first.'); return; }
+    const ctx = document.getElementById('ctx').value.trim();
+    setLoading('ideaBtn', 'ideaSpin', 'ideaTxt', true, 'Generate ideas — free');
+    document.getElementById('ideasOut').innerHTML = '';
+    try {
+      const raw = await callClaude(`You are a TikTok content strategist specialising in organic (non-paid) growth.
+Generate 4 creative, highly specific TikTok video ideas for a creator in the "${niche}" niche. Goal: "${goal}".${ctx ? '\nContext: ' + ctx : ''}
+Each idea must be optimised for ORGANIC reach — no paid promotion. Return ONLY a JSON array of exactly 4 objects. No markdown, no backticks, no preamble:
+- "hook": punchy first-line, max 12 words
+- "description": what the video shows/does, 2-3 sentences
+- "format": e.g. POV, Haul, Flip, Storytime, Behind the scenes, Market run, Price reveal, Tutorial, Duet bait
+- "organicTactic": one specific reason this gets free algorithmic push
+- "hashtags": array of 3 niche-specific hashtags (no #fyp)`);
+      const ideas = JSON.parse(raw.replace(/```json|```/g, '').trim());
+      const out = document.getElementById('ideasOut');
+      out.innerHTML = `<div class="row-hdr"><span class="row-hdr-title">Your ideas</span><button class="btn-sm" onclick="genIdeas()">Regenerate ↻</button></div>`;
+      ideas.forEach((idea, i) => {
+        const c = document.createElement('div');
+        c.className = 'idea-card';
+        const tags = (idea.hashtags || []).map(h => `<span class="itag">${h}</span>`).join('');
+        c.innerHTML = `<div class="idea-num">Idea ${i + 1}</div>
+          <div class="idea-hook">"${idea.hook}"</div>
+          <div class="idea-desc">${idea.description}</div>
+          <div class="itags">
+            <span class="itag blue">${idea.format}</span>
+            <span class="itag amber">${idea.organicTactic}</span>
+            ${tags}
+          </div>`;
+        out.appendChild(c);
+      });
+      out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (e) { showErr('Something went wrong generating ideas. Please try again.'); }
+    finally { setLoading('ideaBtn', 'ideaSpin', 'ideaTxt', false, 'Generate ideas — free'); }
+  }
+
+  async function genCalendar() {
+    setLoading('calBtn', 'calSpin', 'calTxt', true, 'Generate my 30-day plan');
+    document.getElementById('calOut').innerHTML = '';
+    try {
+      const raw = await callClaude(`Create a 30-day TikTok content calendar for a thrifting business. Each post must be organic (no paid boost), specific to thrifting, and varied in format across the 30 days.
+Return ONLY a JSON array of exactly 30 objects. No markdown, no backticks:
+- "day": number 1-30
+- "title": short punchy video concept max 8 words
+- "format": one of: Haul, Flip, Market POV, Price reveal, Storytime, Tutorial, Duet bait, Behind the scenes, Q&A, Trending sound`, 2000);
+      const days = JSON.parse(raw.replace(/```json|```/g, '').trim());
+      const out = document.getElementById('calOut');
+      out.innerHTML = `<div class="row-hdr"><span class="row-hdr-title">Your 30-day plan</span><button class="btn-sm" onclick="genCalendar()">Regenerate ↻</button></div><div class="cal-grid" id="calGrid"></div>`;
+      const grid = document.getElementById('calGrid');
+      days.forEach(d => {
+        const c = document.createElement('div');
+        c.className = 'cal-day';
+        c.innerHTML = `<div class="day-num">Day ${d.day}</div><div class="day-title">${d.title}</div><span class="itag" style="display:inline-block;margin-top:5px;">${d.format}</span>`;
+        grid.appendChild(c);
+      });
+    } catch (e) { showErr('Something went wrong building the calendar. Please try again.'); }
+    finally { setLoading('calBtn', 'calSpin', 'calTxt', false, 'Generate my 30-day plan'); }
+  }
+
+  async function genCaption() {
+    const ctx = document.getElementById('capCtx').value.trim();
+    if (!ctx) { showErr('Please describe your video first.'); return; }
+    setLoading('capBtn', 'capSpin', 'capTxt', true, 'Write caption + hashtags');
+    try {
+      const caption = await callClaude(`Write a TikTok caption for a thrifting business video. Tone: "${tone}".
+Video: "${ctx}"
+Write 2-4 lines max that hook viewers, encourage comments or saves, and end with a call to action. Then add 5-7 niche-specific hashtags on a new line. Natural, not salesy. No markdown — just the caption text and hashtags.`, 500);
+      document.getElementById('capText').textContent = caption.trim();
+      document.getElementById('capOut').style.display = 'block';
+      document.getElementById('capOut').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (e) { showErr('Something went wrong. Please try again.'); }
+    finally { setLoading('capBtn', 'capSpin', 'capTxt', false, 'Write caption + hashtags'); }
+  }
+</script>
+
+</body>
+</html>
